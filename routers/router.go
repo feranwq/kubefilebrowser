@@ -10,9 +10,9 @@ import (
 	"github.com/gin-contrib/gzip"
 	"github.com/gin-contrib/pprof"
 	"github.com/gin-gonic/gin"
-	"github.com/penglongli/gin-metrics/ginmetrics"
-	swaggerFiles "github.com/swaggo/files"
-	ginSwagger "github.com/swaggo/gin-swagger"
+	// "github.com/penglongli/gin-metrics/ginmetrics"
+	// swaggerFiles "github.com/swaggo/files"
+	// ginSwagger "github.com/swaggo/gin-swagger"
 	"github.com/xmapst/kubefilebrowser/configs"
 	_ "github.com/xmapst/kubefilebrowser/docs"
 	"github.com/xmapst/kubefilebrowser/handlers/filebrowser"
@@ -54,16 +54,18 @@ func Router() *gin.Engine {
 	)
 
 	// prometheus metrics
-	m := ginmetrics.GetMonitor()
-	m.SetMetricPath("/metrics")
-	m.SetSlowTime(10)
-	m.SetDuration([]float64{0.1, 0.3, 1.2, 5, 10})
-	m.Use(router)
+	// m := ginmetrics.GetMonitor()
+	// m.SetMetricPath("/metrics")
+	// m.SetSlowTime(10)
+	// m.SetDuration([]float64{0.1, 0.3, 1.2, 5, 10})
+	// m.Use(router)
 
 	// swagger doc
-	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	// router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	// api
-	apiGroup := router.Group("/api")
+	apiGroup := router.Group("/api", gin.BasicAuth(gin.Accounts{
+		configs.Config.UserName: configs.Config.Password,
+	}))
 	{
 		k8sGroup := apiGroup.Group("/kubeapiproxy")
 		{
@@ -83,8 +85,8 @@ func Router() *gin.Engine {
 			fileBrowserGroup.GET("/open", filebrowser.OpenFile)
 			fileBrowserGroup.POST("/createfile", filebrowser.CreateFile)
 			fileBrowserGroup.POST("/createdir", filebrowser.CreateDir)
-			fileBrowserGroup.POST("/rename", filebrowser.Rename)
-			fileBrowserGroup.POST("/remove", filebrowser.Remove)
+			// fileBrowserGroup.POST("/rename", filebrowser.Rename)
+			// fileBrowserGroup.POST("/remove", filebrowser.Remove)
 		}
 	}
 	if configs.Config.RunMode != gin.DebugMode {

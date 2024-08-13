@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 export PATH=$PATH:$GOPATH/bin
 #go get -u github.com/swaggo/swag/cmd/swag
-swag init -g cmd/server/main.go
+#swag init -g cmd/server/main.go
 # shellcheck disable=SC2181
-if [ "$?" != "0" ]; then
-  echo "!!!!!!Swagger documentation generate error, please check the source code!!!!!!"
-  exit 1
-fi
+# if [ "$?" != "0" ]; then
+#   echo "!!!!!!Swagger documentation generate error, please check the source code!!!!!!"
+#   exit 1
+# fi
 
 # build webui
 #cd webui && yarn run build && cd ../

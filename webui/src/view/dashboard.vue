@@ -247,7 +247,7 @@
               :label="$t('operate')" align="center"
           >
             <template slot-scope="scope">
-              <el-dropdown type="info" class="avatar-container" trigger="click" style="height: 36px;font-size: 9px">
+              <!-- <el-dropdown type="info" class="avatar-container" trigger="click" style="height: 36px;font-size: 9px">
                 <div class="avatar-wrapper">
                   <el-button style="width: 90px; height: 30px; margin-top: 4px; margin-right: 6px; padding-top: 7px; padding-left: 14px;" type="success" round class="el-icon-s-tools" size="medium">
                     {{ $t('operate') }}
@@ -266,7 +266,7 @@
                     <span class="fake-file-btn" @click="removeFileOrDir(scope.row.Path)">{{ $t('remove') }}</span>
                   </el-dropdown-item>
                 </el-dropdown-menu>
-              </el-dropdown>
+              </el-dropdown> -->
               <span>
                 &nbsp;&nbsp;
               </span>

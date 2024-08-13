@@ -26,6 +26,8 @@ type Configure struct {
 	HTTPAddr    string   `envconfig:"HTTP_ADDR" default:"0.0.0.0"`
 	IPWhiteList []string `envconfig:"IP_WHITE_LIST" default:"*"`
 	RootPath    string   `envconfig:"ROOT_PATH" default:""`
+	UserName    string   `envconfig:"USERNAME" default:"admin"`
+	Password    string   `envconfig:"PASSWORD" default:""`
 }
 
 var (
